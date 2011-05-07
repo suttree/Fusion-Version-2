@@ -1,0 +1,357 @@
+<% content_for :head do -%>
+  <script type="text/javascript">
+    (function ($) {
+      $.fn.fadeTransition = function(options) {
+        var options = $.extend({pauseTime: 5000, transitionTime: 2000}, options);
+        var transitionObject;
+
+        Trans = function(obj) {
+          var timer = null;
+          var current = 0;
+          var els = $("> *", obj).css("display", "none").css("left", "0").css("top", "0").css("position", "absolute");
+          $(obj).css("position", "relative");
+          $(els[current]).css("display", "block");
+
+          function transition(next) {
+            if (next == 0) return false;
+            $(els[current]).fadeOut(options.transitionTime);
+            $(els[next]).fadeIn(options.transitionTime);
+            current = next;
+            cue();
+          };
+
+          function cue() {
+            if ($("> *", obj).length < 2) return false;
+            if (timer) clearTimeout(timer);
+            timer = setTimeout(function() { transition((current + 1) % els.length | 0)} , options.pauseTime);
+          };
+        
+          this.showItem = function(item) {
+            if (timer) clearTimeout(timer);
+            transition(item);
+          };
+
+          cue();
+        }
+
+        this.showItem = function(item) {
+          transitionObject.showItem(item);
+        };
+
+        return this.each(function() {
+          transitionObject = new Trans(this);
+        });
+      }
+
+    })(jQuery);
+
+    var page = {
+      tr: null,
+      init: function() {
+        page.tr = $("#slides").fadeTransition({pauseTime: 5000, transitionTime: 2000});
+        $("div.navigation").each(function() {
+          $(this).children().each( function(idx) {
+            if ($(this).is("a"))
+              $(this).click(function() { page.tr.showItem(idx); })
+          });
+        });
+      },
+
+      show: function(idx) {
+        if (page.tr.timer) clearTimeout(page.tr.timer);
+        page.tr.showItem(idx);
+      }
+    };
+
+    $(document).ready(page.init);
+  </script>
+  
+  <style type="text/css">
+    div.slides { position: relative; height: 100%; width: 100%; }
+    div.slide-1 { width: 100%; height: 100%; }
+    div.navigation { position: absolute; top: 5px; right: 5px; }
+    div.navigation div.current, div.navigation a { width: 12px; height: 12px; margin: 0 8px 0 0; float: left; overflow: hidden; }
+    div.navigation a:hover { text-decoration: none; }
+    div.navigation div.current { background: #aaa; }
+    div.navigation a { display: block; background: #ccc; }
+  </style>
+<% end -%>
+
+<div id='slides'>
+  <div id='slide-1' style='display:block;  width: 100%; height: 100%;'>
+    <div class="navigation">
+      <div class="current"></div>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+    </div>
+    <div id='title'>
+      F.U.S.I.O.N
+    </div>
+    <div id='content'>
+      You're receiving this message because you are one of the survivors of a global catastrophe.
+      <%= audioPlayer("#{current_user.login}, you're receiving this message because you are one of the survivors of a global catastrophe.") -%>
+    </div>
+  </div>
+  <div id='slide-2' style='display:block;  width: 100%; height: 100%;'>
+    <div class="navigation">
+      <a href="#">&nbsp;</a>
+      <div class="current"></div>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+    </div>
+    <div id='title'>
+      F.U.S.I.O.N
+    </div>
+    <div id='content'>
+      You’re probably feeling a bit unfocused right now.
+      <%= audioPlayer("You’re probably feeling a bit unfocused right now.") -%>
+    </div>
+  </div>
+  <div id='slide-3' style='display:block;  width: 100%; height: 100%;'>
+    <div class="navigation">
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <div class="current"></div>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+    </div>
+    <div id='title'>
+      F.U.S.I.O.N
+    </div>
+    <div id='content'>
+      That’s fine.
+      <%= audioPlayer("That’s fine.") -%>
+    </div>
+  </div>
+  <div id='slide-4' style='display:block;  width: 100%; height: 100%;'>
+    <div class="navigation">
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <div class="current"></div>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+    </div>
+    <div id='title'>
+      F.U.S.I.O.N
+    </div>
+    <div id='content'>
+      Most of us lack direction in our lives from time to time.
+      <%= audioPlayer("Most of us lack direction in our lives from time to time.") -%>
+    </div>
+  </div>
+  <div id='slide-5' style='display:block;  width: 100%; height: 100%;'>
+    <div class="navigation">
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <div class="current"></div>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+    </div>
+    <div id='title'>
+      F.U.S.I.O.N
+    </div>
+    <div id='content'>
+      Perhaps you're feeling angry and confused.
+      <%= audioPlayer("Perhaps you're feeling angry and confused.") -%>
+    </div>
+  </div>
+  <div id='slide-6' style='display:block;  width: 100%; height: 100%;'>
+    <div class="navigation">
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <div class="current"></div>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+    </div>
+    <div id='title'>
+      F.U.S.I.O.N
+    </div>
+    <div id='content'>
+      And that's OK too.
+      <%= audioPlayer("And that's OK too.") -%>
+    </div>
+  </div>
+  <div id='slide-7' style='display:block;  width: 100%; height: 100%;'>
+    <div class="navigation">
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <div class="current"></div>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+    </div>
+    <div id='title'>
+      F.U.S.I.O.N
+    </div>
+    <div id='content'> 
+      Feel the anger.
+      <%= audioPlayer("Feel the anger.") -%>
+    </div>
+  </div>
+  <div id='slide-8' style='display:block;  width: 100%; height: 100%;'>
+    <div class="navigation">
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <div class="current"></div>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+    </div>
+    <div id='title'>
+      F.U.S.I.O.N
+    </div>
+    <div id='content'> 
+      Internalise it.
+      <%= audioPlayer("Internalise it.") -%>
+    </div>
+  </div>
+  <div id='slide-9' style='display:block;  width: 100%; height: 100%;'>
+    <div class="navigation">
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <div class="current"></div>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+    </div>
+    <div id='title'>
+      F.U.S.I.O.N
+    </div>
+    <div id='content'> 
+      Ignore it.
+      <%= audioPlayer("Ignore it.") -%>
+    </div>
+  </div>
+  <div id='slide-10' style='display:block;  width: 100%; height: 100%;'>
+    <div class="navigation">
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <div class="current"></div>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+    </div>
+    <div id='title'>
+      F.U.S.I.O.N
+    </div>
+    <div id='content'> 
+      We're here to help you feel better about YOU.
+      <%= audioPlayer("We're here to help you feel better about YOU.") -%>
+    </div>
+  </div>
+  <div id='slide-11' style='display:block;  width: 100%; height: 100%;'>
+    <div class="navigation">
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <div class="current"></div>
+      <a href="#">&nbsp;</a>
+    </div>
+    <div id='title'>
+      F.U.S.I.O.N
+    </div>
+    <div id='content'> 
+      f.u.s.i.o.n labs (&trade;). 
+    </div>
+  </div>
+  <div id='slide-12' style='display:block;  width: 100%; height: 100%;'>
+    <div class="navigation">
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <a href="#">&nbsp;</a>
+      <div class="current"></div>
+    </div>
+    <div id='title'>
+      F.U.S.I.O.N
+    </div>
+    <div id='content'> 
+      It’s all you need to know.
+      <br/>
+      <a href='/ops'>Ready?</a>
+      <%= audioPlayer("It’s all you need to know.") -%>
+    </div>
+  </div>
+</div>

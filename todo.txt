@@ -1,0 +1,2 @@
+Add in the country song
+Move /play to /welcome (or whatever if appropriate for the emergency slideshow)

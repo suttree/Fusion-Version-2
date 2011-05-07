@@ -1,0 +1,155 @@
+body {
+  margin: 0;
+  padding: 0;
+  background:#fff url(../images/bg/hands.png) no-repeat;
+  background-position: left bottom;
+}
+
+#page_effect {
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+#header {
+  margin: 0;
+  padding: 0;
+  height: 10px;
+  margin-bottom: 7em;
+}
+#ai {
+  width: 350px;
+  color:#fff;
+  margin: 0px;
+  float: right;
+  padding: 5px;
+  font-size: small;
+  margin-left: auto;
+  margin-right: auto;
+  border-left: 2px solid #282828;
+  border-bottom: 2px solid #282828;
+  background:transparent url(../images/ui/panel.png) repeat scroll 0 0;
+}
+
+#ai a, #ai a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+
+#ai a:hover {
+  text-decoration: underline;
+}
+
+#ai #avatar {
+  float: left;
+  margin: 5px 10px 5px 5px;
+}
+
+#ai #audioPlayer {
+  display:block;
+  margin-top: 5px;
+}
+
+#audipPlayer {
+  vertical-align: middle;
+}
+
+#flash-messages {
+  border-top: 1px solid #282828;
+}
+
+#spinner {
+  height: 16px;
+  width: 16px;
+  margin: 0px;
+  padding: 0px;
+}
+
+#content, #gameboard {
+  width: 60%;
+  clear:both;
+  padding: 1em;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #000;
+  text-align: left  ;
+  font-family: Gill Sans;
+  background-color: #ededf0;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+}
+
+#gameboard {
+  width: 800px;
+}
+
+#gameboard #buttons {
+  float: right;
+  text-transform: uppercase;
+  border-left: 2px solid #282828;
+  border-bottom: 2px solid #282828;
+  background:transparent url(../images/ui/panel.png) repeat scroll 0 0;
+}
+
+#gameboard #buttons a {
+  color: #fff;
+  padding: 15px;
+  display: block;
+  text-decoration: none;
+}
+
+#gameboard #buttons a:hover {
+  background: #000;
+  text-decoration: underline;
+}
+
+#gameboard #buttons ul {
+  padding: 0px;
+  margin: 0px;
+  list-style-type: none;
+}
+
+#user_submit{
+  float: middle;
+  color:#333;
+  font-weight:bold;
+  background-color:#eee;
+  border:1px solid #eee;
+  border-bottom:1px solid #ccc;
+  border-right:1px solid #ccc;
+  padding:10px 20px 10px 20px;
+}
+
+#user_submit:hover{color:#fff;
+  background-color:#666;
+  border:1px solid #666;
+  border-bottom:1px solid #eee;
+  border-right:1px solid #eee;
+}
+
+#slides {
+  width: 100%;
+  height: 100%;
+  color: #7a7a7a;
+  font-weight: lighter;
+  font-family: Gill Sans;
+  background-color: #ededf0;
+}
+
+div#slides div#title {
+  padding: 50px 0px 10px 100px;
+  font-size: 72px;
+  border-bottom: 4px solid #7a7a7a;
+}
+
+div#slides div#content {
+  margin: 140px 50px 0px 70px;
+  float: middle;
+  width: 80%;
+  text-align: left;
+  font-size: 38px;
+  height: 100px;
+}
+#simplemodal-overlay {background-color:#000;}
+#simplemodal-container {background-color:#333; border:8px solid #444; padding:12px;}

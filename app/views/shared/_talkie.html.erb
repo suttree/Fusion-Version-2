@@ -1,0 +1,12 @@
+<div id='ai'>
+  <div id='avatar'>
+    <img src='/images/ai/robot-1.jpeg' width='36' height='36'>
+  </div>
+  <div id='audioPlayer'>
+    <%= audioPlayer(@greeting) if Rails.env == 'production' && ! @greeting.blank? -%>
+  </div>
+  <%= yield :talkie -%>
+  <b><a href='/'>fus<span class='cursor'>i</span>on</a></b> ~ all you need to know
+  <%#= @greeting if ! @greeting.blank? -%>
+  <%#= render :partial => 'shared/flash_messages' -%>
+</div>
